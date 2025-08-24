@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/types";
+import { TProduct } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProductState } from "./type";
 
@@ -12,7 +12,7 @@ export const ProductSlice = createSlice({
   name: "selected",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Product>) => {
+    add: (state, action: PayloadAction<TProduct>) => {
       state.selectedProduct = action.payload;
     },
     remove: (state) => {
