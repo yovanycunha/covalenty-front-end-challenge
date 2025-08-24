@@ -29,15 +29,19 @@ const product: TProduct = {
 
 describe("Card Component test", () => {
   it("should render Card component - fields renders", () => {
+    // render component
     render(<Card product={product} />);
 
+    // validate product image
     const cardPoster = screen.queryByRole("img");
     expect(cardPoster).toBeInTheDocument();
 
+    // validate title
     const titleRegex = new RegExp(`${product.title}`, "i");
     const cardTitle = screen.queryByText(titleRegex);
     expect(cardTitle).toBeInTheDocument();
 
+    // validate price
     const priceRegex = new RegExp(`${product.price}`, "i");
     const cardPrice = screen.queryByText(priceRegex);
     expect(cardPrice).toBeInTheDocument();
