@@ -6,20 +6,25 @@ import { IProductState } from "./type";
 
 const initialState: IProductState = {
   selectedProduct: null,
+  productsList: [],
 };
 
 export const ProductSlice = createSlice({
-  name: "selected",
+  name: "products",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<TProduct>) => {
+    selectProduct: (state, action: PayloadAction<TProduct>) => {
       state.selectedProduct = action.payload;
     },
-    remove: (state) => {
+    unselectProduct: (state) => {
       state.selectedProduct = null;
+    },
+    createList: (state, action: PayloadAction<TProduct[]>) => {
+      state.productsList = action.payload;
     },
   },
 });
 
-export const { add, remove } = ProductSlice.actions;
+export const { selectProduct, unselectProduct, createList } =
+  ProductSlice.actions;
 export default ProductSlice.reducer;

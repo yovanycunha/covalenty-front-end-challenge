@@ -4,9 +4,9 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 .poster {
-  @apply flex 
+  @apply flex;
 }
 
 .image {
-  @apply rounded-lg;
+  @apply rounded-lg w-[100];
 }

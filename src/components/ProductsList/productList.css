@@ -3,10 +3,6 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
-.container {
-  @apply max-w-7xl md:w-10/11;
-}
-
-.main {
-  @apply mt-20 w-full;
+.productsSection {
+  @apply flex flex-row flex-wrap gap-2 items-center justify-center;
 }
