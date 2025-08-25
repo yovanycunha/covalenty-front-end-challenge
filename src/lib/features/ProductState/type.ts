@@ -1,5 +1,6 @@
-import { Product } from "@/types";
+import { TProduct } from "@/types";
 
 export interface IProductState {
-  selectedProduct: Product | null;
+  selectedProduct: TProduct | null;
+  productsList: TProduct[];
 }

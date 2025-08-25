@@ -1,8 +1,33 @@
+"use client";
+
+import { Header } from "@/components/Header/Header";
+import "./page.css";
+import { useQuery } from "@tanstack/react-query";
+import { ProductService } from "@/services/product.service";
+import { useEffect } from "react";
+import { useAppDispatch } from "@/lib/hooks";
+import { createList } from "@/lib/features/ProductState/ProductSlice";
+import { ProductsList } from "@/components/ProductsList/ProductsList";
+
 export default function Home() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: () => ProductService.getAllProducts(),
+  });
+
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (data) {
+      dispatch(createList(data));
+    }
+  }, [data, dispatch]);
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <h1>Covalenty Front End Challenge</h1>
+    <div className="container">
+      <Header />
+      <main className="main">
+        <ProductsList />
       </main>
     </div>
   );

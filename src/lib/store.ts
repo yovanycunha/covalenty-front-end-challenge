@@ -4,7 +4,7 @@ import ProductSlice from "./features/ProductState/ProductSlice";
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      selected: ProductSlice,
+      productSlice: ProductSlice,
     },
   });
 };
