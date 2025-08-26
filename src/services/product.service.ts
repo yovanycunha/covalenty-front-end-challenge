@@ -13,11 +13,11 @@ export class ProductService {
     }
   }
 
-  static async getProduct(id: number) {
+  static async getProduct(id: string): Promise<TProduct> {
     try {
       const response = await productsApi.get(`/${id}`);
 
-      return response;
+      return response.data;
     } catch (err) {
       console.error(`Error recovering product (product id: ${id}). ${err}`);
       throw new Error("Failed to get product.");

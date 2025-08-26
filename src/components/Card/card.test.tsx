@@ -2,6 +2,8 @@ import { TProduct } from "@/types";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Card } from "./Card";
+import { makeStore } from "@/lib/store";
+import { Provider } from "react-redux";
 
 const product: TProduct = {
   id: 16,
@@ -27,10 +29,16 @@ const product: TProduct = {
   updatedAt: "2025-08-24T10:20:10.000Z",
 };
 
+const storeMock = makeStore();
+
 describe("Card Component test", () => {
   it("should render Card component - fields renders", () => {
     // render component
-    render(<Card product={product} />);
+    render(
+      <Provider store={storeMock}>
+        <Card product={product} />
+      </Provider>
+    );
 
     // validate product image
     const cardPoster = screen.queryByRole("img");

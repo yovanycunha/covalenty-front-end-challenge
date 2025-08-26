@@ -1,0 +1,32 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+.detailsWrapper {
+  @apply flex flex-col items-center px-4 max-w-[400px] m-auto gap-3;
+}
+
+.titleWrapper {
+  @apply flex flex-row gap-4 items-center;
+}
+
+.detailTitle {
+  @apply text-2xl text-stone-700 text-start w-full items-start font-bold line-clamp-1;
+}
+
+.detailImage {
+  @apply rounded-md shadow-2xs;
+}
+
+.itemContainer {
+  @apply grid grid-cols-2 p-3 border-2 border-blue-50 rounded-2xl w-full shadow-xl;
+}
+
+.itemTitle {
+  @apply text-sm italic text-stone-600 text-center;
+}
+
+.itemText {
+  @apply font-bold text-stone-600 line-clamp-4;
+}
