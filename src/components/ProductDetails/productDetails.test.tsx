@@ -1,13 +1,11 @@
-import { describe, expect, it } from "vitest";
-import { Header } from "./Header";
 import { render, screen } from "@testing-library/react";
+import { describe, expect, it } from "vitest";
+import { ProductDetails } from "./ProductDetails";
+import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
 import { makeStore } from "@/lib/store";
 import { Provider } from "react-redux";
-import { selectProduct } from "@/lib/features/ProductState/ProductSlice";
 
-const storeMock = makeStore();
-
-const prod = {
+const selectedProduct = {
   id: 5,
   title: "Classic Black Hooded Sweatshirt",
   slug: "classic-black-hooded-sweatshirt",
@@ -31,33 +29,25 @@ const prod = {
   updatedAt: "2025-08-25T15:47:21.000Z",
 };
 
-describe("Header Component test - Render", () => {
-  it("should render Header component", () => {
-    // render component
-    render(
+const storeMock = makeStore();
+
+describe("ProductDetails component test", () => {
+  it("Should render ProductDetails component", async () => {
+    await render(
       <Provider store={storeMock}>
-        <Header />
+        <ReactQueryProvider>
+          <ProductDetails id={String(selectedProduct.id)} />
+        </ReactQueryProvider>
       </Provider>
     );
 
-    // validate title rendering
-    expect(screen.queryByText(/Products List/i)).toBeInTheDocument();
-
-    // validate last selected product - have no product selected
-    const noSelectedContainer = screen.queryByRole("noSelectedContainer");
-    expect(noSelectedContainer).toBeInTheDocument();
-  });
-  it("should render selected product", () => {
-    storeMock.dispatch(selectProduct(prod));
-    // render component
-    render(
-      <Provider store={storeMock}>
-        <Header />
-      </Provider>
-    );
-
-    // validate last selected product - have product selected
-    const selectedContainer = screen.queryByRole("selectedContainer");
-    expect(selectedContainer).toBeInTheDocument();
+    const titleDetail = await screen.findByRole("detailsTitle");
+    expect(titleDetail).toBeInTheDocument();
+    const priceDetail = await screen.findByRole("detailsPrice");
+    expect(priceDetail).toBeInTheDocument();
+    const categoryDetail = await screen.findByRole("detailsCategory");
+    expect(categoryDetail).toBeInTheDocument();
+    const descriptionDetail = await screen.findByRole("detailsDescription");
+    expect(descriptionDetail).toBeInTheDocument();
   });
 });

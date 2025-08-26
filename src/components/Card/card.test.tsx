@@ -2,6 +2,8 @@ import { TProduct } from "@/types";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Card } from "./Card";
+import { makeStore } from "@/lib/store";
+import { Provider } from "react-redux";
 
 const product: TProduct = {
   id: 16,
