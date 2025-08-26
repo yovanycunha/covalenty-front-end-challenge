@@ -6,27 +6,24 @@ import { makeStore } from "@/lib/store";
 import { Provider } from "react-redux";
 
 const selectedProduct = {
-  id: 5,
-  title: "Classic Black Hooded Sweatshirt",
-  slug: "classic-black-hooded-sweatshirt",
-  price: 79,
-  description:
-    "Elevate your casual wardrobe with our Classic Black Hooded Sweatshirt. Made from high-quality, soft fabric that ensures comfort and durability, this hoodie features a spacious kangaroo pocket and an adjustable drawstring hood. Its versatile design makes it perfect for a relaxed day at home or a casual outing.",
+  id: 55,
+  title: "Camisa Payaso",
+  slug: "camisa-payaso",
+  price: 200,
+  description: "Merch exclusiva",
   category: {
     id: 1,
-    name: "Cloth",
-    slug: "cloth",
+    name: "un nuevo nombre",
+    slug: "un-nuevo-nombre",
     image: "https://i.imgur.com/QkIa5tT.jpeg",
-    creationAt: "2025-08-25T15:47:21.000Z",
-    updatedAt: "2025-08-26T14:26:08.000Z",
+    creationAt: "2025-08-26T16:21:30.000Z",
+    updatedAt: "2025-08-26T19:23:59.000Z",
   },
   images: [
-    "https://i.imgur.com/cSytoSD.jpeg",
-    "https://i.imgur.com/WwKucXb.jpeg",
-    "https://i.imgur.com/cE2Dxh9.jpeg",
+    "https://http2.mlstatic.com/D_NQ_NP_823649-MLM76339979912_052024-O-playera-auron-house-clown-auronplay-payaso.webp",
   ],
-  creationAt: "2025-08-25T15:47:21.000Z",
-  updatedAt: "2025-08-25T15:47:21.000Z",
+  creationAt: "2025-08-26T16:26:59.000Z",
+  updatedAt: "2025-08-26T16:26:59.000Z",
 };
 
 const storeMock = makeStore();
@@ -41,7 +38,7 @@ describe("ProductDetails component test", () => {
       </Provider>
     );
 
-    const titleDetail = await screen.findByRole("detailsTitle");
+    const titleDetail = await screen.findByText(selectedProduct.title);
     expect(titleDetail).toBeInTheDocument();
     const priceDetail = await screen.findByRole("detailsPrice");
     expect(priceDetail).toBeInTheDocument();
