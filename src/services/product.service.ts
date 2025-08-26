@@ -4,9 +4,9 @@ import { productsApi } from "./client/client";
 export class ProductService {
   static async getAllProducts(): Promise<TProduct[]> {
     try {
-      const response = await productsApi.get("");
+      const { data } = await productsApi.get("");
 
-      return response.data;
+      return data;
     } catch (err) {
       console.error(`Error recovering products. ${err}`);
       throw new Error("Failed to get products.");
@@ -15,9 +15,9 @@ export class ProductService {
 
   static async getProduct(id: string): Promise<TProduct> {
     try {
-      const response = await productsApi.get(`/${id}`);
+      const { data } = await productsApi.get(`/${id}`);
 
-      return response.data;
+      return data;
     } catch (err) {
       console.error(`Error recovering product (product id: ${id}). ${err}`);
       throw new Error("Failed to get product.");
