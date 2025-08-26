@@ -3,15 +3,28 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
-.wrapper {
+.headerWrapper {
   @apply fixed top-0 left-0 right-0 flex items-center
-  h-16 shadow-lg z-10 bg-zinc-50 m-auto;
+  h-20 shadow-lg z-10 bg-zinc-50 m-auto flex-col;
 }
 
-.container {
-  @apply flex justify-between items-center m-auto w-full md:w-3xl;
+.headerContainer {
+  @apply flex justify-between items-center m-auto 
+  w-full md:w-3xl border-b-stone-300 border-b-2 px-2;
 }
 
-.text {
-  @apply text-2xl md:text-3xl font-bold text-blue-900;
+.headerText {
+  @apply text-2xl md:text-3xl font-bold text-stone-700;
+}
+
+.selectedContainer {
+  @apply flex items-start w-full flex-col;
+}
+
+.selectedText {
+  @apply text-sm italic text-stone-500 px-2;
+}
+
+.selectedProduct {
+  @apply text-sm text-stone-500 px-2 font-bold line-clamp-1;
 }
