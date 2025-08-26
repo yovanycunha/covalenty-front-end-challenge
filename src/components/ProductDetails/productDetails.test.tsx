@@ -2,6 +2,8 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { ProductDetails } from "./ProductDetails";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import { makeStore } from "@/lib/store";
+import { Provider } from "react-redux";
 
 const selectedProduct = {
   id: 5,
@@ -27,12 +29,16 @@ const selectedProduct = {
   updatedAt: "2025-08-25T15:47:21.000Z",
 };
 
+const storeMock = makeStore();
+
 describe("ProductDetails component test", () => {
   it("Should render ProductDetails component", async () => {
     await render(
-      <ReactQueryProvider>
-        <ProductDetails id={String(selectedProduct.id)} />
-      </ReactQueryProvider>
+      <Provider store={storeMock}>
+        <ReactQueryProvider>
+          <ProductDetails id={String(selectedProduct.id)} />
+        </ReactQueryProvider>
+      </Provider>
     );
 
     const titleDetail = await screen.findByRole("detailsTitle");

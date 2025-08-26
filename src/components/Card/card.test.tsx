@@ -29,16 +29,10 @@ const product: TProduct = {
   updatedAt: "2025-08-24T10:20:10.000Z",
 };
 
-const storeMock = makeStore();
-
 describe("Card Component test", () => {
   it("should render Card component - fields renders", () => {
     // render component
-    render(
-      <Provider store={storeMock}>
-        <Card product={product} />
-      </Provider>
-    );
+    render(<Card product={product} />);
 
     // validate product image
     const cardPoster = screen.queryByRole("img");

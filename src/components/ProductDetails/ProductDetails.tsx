@@ -9,6 +9,8 @@ import DefaultImage from "./images/default-image.svg";
 import { IProductDetailsProps } from "./type";
 import Arrow from "./images/arrow.svg";
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/lib/hooks";
+import { selectProduct } from "@/lib/features/ProductState/ProductSlice";
 
 export function ProductDetails({ id }: IProductDetailsProps) {
   const { data, isLoading } = useQuery({
@@ -16,6 +18,7 @@ export function ProductDetails({ id }: IProductDetailsProps) {
     queryFn: () => ProductService.getProduct(id),
   });
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const [imgSrc, setImgSrc] = useState<string>(DefaultImage);
 
@@ -26,6 +29,10 @@ export function ProductDetails({ id }: IProductDetailsProps) {
   useEffect(() => {
     if (data) setImgSrc(data.images[0]);
   }, [data]);
+
+  useEffect(() => {
+    if (data) dispatch(selectProduct(data));
+  }, [data, dispatch]);
 
   return (
     data && (
