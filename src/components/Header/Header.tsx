@@ -7,13 +7,13 @@ export function Header() {
   const { selectedProduct } = useAppSelector((state) => state.productSlice);
 
   const renderNoSelectedMsg = () => (
-    <div className="seletedContainer">
+    <div className="seletedContainer" role="noSelectedContainer">
       <span className="selectedText">No products were seleted yet</span>
     </div>
   );
 
   const renderSelectedProduct = () => (
-    <div className="selectedContainer">
+    <div className="selectedContainer" role="selectedContainer">
       <span className="selectedText">Recently viewed product:</span>
       <span className="selectedProduct">{selectedProduct?.title}</span>
     </div>

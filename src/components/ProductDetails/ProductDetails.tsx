@@ -51,7 +51,6 @@ export function ProductDetails({ id }: IProductDetailsProps) {
           onError={() => setImgSrc(data.category.image)}
           className="detailImage"
           unoptimized
-          role="detailsImg"
         />
         <div className="itemContainer" role="detailsPrice">
           <span className="itemTitle">Price:</span>
