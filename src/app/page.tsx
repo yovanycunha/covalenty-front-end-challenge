@@ -7,6 +7,7 @@ import { useAppDispatch } from "@/lib/hooks";
 import { createList } from "@/lib/features/ProductState/ProductSlice";
 import { ProductsList } from "@/components/ProductsList/ProductsList";
 import { Container } from "@/components/Container/Container";
+import { Spinner } from "@/components/Spinner/Spinner";
 
 export default function Home() {
   const { data, isLoading } = useQuery({
@@ -22,9 +23,5 @@ export default function Home() {
     }
   }, [data, dispatch]);
 
-  return (
-    <Container>
-      <ProductsList />
-    </Container>
-  );
+  return <Container>{isLoading ? <Spinner /> : <ProductsList />}</Container>;
 }

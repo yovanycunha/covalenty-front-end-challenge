@@ -1,0 +1,12 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+.spinnerContainer {
+  @apply flex justify-center;
+}
+
+.spinnerSvg {
+  @apply w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600;
+}
