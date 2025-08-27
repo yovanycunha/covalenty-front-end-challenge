@@ -38,7 +38,7 @@ describe("ProductDetails component test", () => {
       </Provider>
     );
 
-    const titleDetail = await screen.findByText(selectedProduct.title);
+    const titleDetail = await screen.findByRole("detailsTitle");
     expect(titleDetail).toBeInTheDocument();
     const priceDetail = await screen.findByRole("detailsPrice");
     expect(priceDetail).toBeInTheDocument();
