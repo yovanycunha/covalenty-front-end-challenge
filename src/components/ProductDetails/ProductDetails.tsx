@@ -12,9 +12,10 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/lib/hooks";
 import { selectProduct } from "@/lib/features/ProductState/ProductSlice";
 import { Spinner } from "../Spinner/Spinner";
+import { ErrorMsg } from "../ErrorMsg/ErrorMsg";
 
 export function ProductDetails({ id }: IProductDetailsProps) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["details"],
     queryFn: () => ProductService.getProduct(id),
   });
@@ -26,14 +27,6 @@ export function ProductDetails({ id }: IProductDetailsProps) {
   const handleNavigateBack = () => {
     router.push("/");
   };
-
-  useEffect(() => {
-    if (data) setImgSrc(data.images[0]);
-  }, [data]);
-
-  useEffect(() => {
-    if (data) dispatch(selectProduct(data));
-  }, [data, dispatch]);
 
   const renderDetails = () => (
     <div className="detailsWrapper">
@@ -74,5 +67,20 @@ export function ProductDetails({ id }: IProductDetailsProps) {
     </div>
   );
 
-  return isLoading ? <Spinner /> : renderDetails();
+  const renderContent = () => {
+    if (error) {
+      const msg = `Product with id: ${id} not found`;
+      return <ErrorMsg msg={msg} />;
+    } else return renderDetails();
+  };
+
+  useEffect(() => {
+    if (data) setImgSrc(data.images[0]);
+  }, [data]);
+
+  useEffect(() => {
+    if (data) dispatch(selectProduct(data));
+  }, [data, dispatch]);
+
+  return isLoading ? <Spinner /> : renderContent();
 }

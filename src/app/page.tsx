@@ -8,9 +8,10 @@ import { createList } from "@/lib/features/ProductState/ProductSlice";
 import { ProductsList } from "@/components/ProductsList/ProductsList";
 import { Container } from "@/components/Container/Container";
 import { Spinner } from "@/components/Spinner/Spinner";
+import { ErrorMsg } from "@/components/ErrorMsg/ErrorMsg";
 
 export default function Home() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["products"],
     queryFn: () => ProductService.getAllProducts(),
   });
@@ -23,5 +24,9 @@ export default function Home() {
     }
   }, [data, dispatch]);
 
-  return <Container>{isLoading ? <Spinner /> : <ProductsList />}</Container>;
+  const renderContent = () => {
+    return error ? <ErrorMsg msg="No products found" /> : <ProductsList />;
+  };
+
+  return <Container>{isLoading ? <Spinner /> : renderContent()}</Container>;
 }
