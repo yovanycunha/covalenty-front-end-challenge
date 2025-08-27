@@ -8,7 +8,13 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "docker:dev": "docker-compose --profile dev up --build",
+    "docker:prod": "docker-compose --profile prod up --build",
+    "docker:build": "docker build -t covalenty-app .",
+    "docker:run": "docker run -p 3000:3000 covalenty-app",
+    "docker:stop": "docker-compose down",
+    "docker:clean": "docker system prune -f && docker volume prune -f"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
