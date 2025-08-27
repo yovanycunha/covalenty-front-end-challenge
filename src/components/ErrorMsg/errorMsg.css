@@ -3,10 +3,8 @@
 @import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 
-.container {
-  @apply max-w-7xl md:w-10/11 m-auto;
-}
-
-.main {
-  @apply mt-22 w-full items-center;
+.msg {
+  @apply p-3 border-2 bg-red-50 text-red-900 
+      border-red-300 rounded-2xl w-full shadow-xl
+      shadow-red-500/30 max-w-xs m-auto text-center;
 }
