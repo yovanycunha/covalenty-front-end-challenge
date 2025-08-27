@@ -22,7 +22,7 @@ Aplicação referente ao desafio da Covalenty para a vaga de desenvolvedor front
 
 1. Clone o repositório:
 ```bash
-git clone <url-do-repositorio>
+git clone o [[código](https://github.com/yovanycunha/covalenty-front-end-challenge)]
 cd covalenty-front-end-challenge
 ```
 
