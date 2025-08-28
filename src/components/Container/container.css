@@ -4,7 +4,7 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 .container {
-  @apply max-w-7xl md:w-10/11 m-auto;
+  @apply max-w-7xl md:max-w-3xl lg:max-w-5xl m-auto;
 }
 
 .main {

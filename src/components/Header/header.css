@@ -10,7 +10,11 @@
 
 .headerContainer {
   @apply flex justify-between items-center m-auto 
-  w-full md:w-3xl border-b-stone-300 border-b-2 px-2;
+  w-full md:max-w-3xl px-2;
+}
+
+.headerDivider {
+  @apply h-0.5 bg-stone-300 w-full;
 }
 
 .headerText {
@@ -18,7 +22,7 @@
 }
 
 .selectedContainer {
-  @apply flex items-start w-full flex-col;
+  @apply flex items-start w-full flex-col md:max-w-3xl;
 }
 
 .selectedText {

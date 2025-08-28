@@ -23,6 +23,7 @@ export function Header() {
       <div className="headerContainer">
         <p className="headerText">Products List</p>
       </div>
+      <div className="headerDivider" />
       {selectedProduct ? renderSelectedProduct() : renderNoSelectedMsg()}
     </header>
   );
