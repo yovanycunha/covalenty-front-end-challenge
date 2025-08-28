@@ -44,12 +44,83 @@ yarn dev
 
 ### Scripts Disponíveis
 
+#### Desenvolvimento Local
 - `npm run dev` - Inicia o servidor de desenvolvimento com Turbopack
 - `npm run build` - Constrói a aplicação para produção
 - `npm start` - Inicia o servidor de produção
 - `npm run lint` - Executa o ESLint
 - `npm run test` - Executa os testes com Vitest
 - `npm run test:coverage` - Executa os testes com relatório de cobertura
+
+#### Docker
+- `npm run docker:dev` - Executa ambiente de desenvolvimento com Docker
+- `npm run docker:prod` - Executa ambiente de produção com Docker
+- `npm run docker:build` - Constrói imagem Docker de produção
+- `npm run docker:run` - Executa container de produção
+- `npm run docker:stop` - Para containers Docker
+- `npm run docker:clean` - Limpa sistema Docker e volumes
+
+## 🐳 Desenvolvimento com Docker
+
+### Pré-requisitos
+- Docker (versão 20.0 ou superior)
+- Docker Compose (versão 1.27 ou superior)
+
+### Configuração Docker
+
+Esta aplicação possui uma configuração Docker completa com suporte a ambientes de desenvolvimento e produção:
+
+#### Arquivos de Configuração
+- **Dockerfile** - Imagem multi-stage otimizada para produção com Node.js 22 Alpine
+- **Dockerfile.dev** - Imagem simplificada para desenvolvimento com hot-reload
+- **docker-compose.yml** - Orquestração com perfis para desenvolvimento e produção
+- **.dockerignore** - Otimização de build excluindo arquivos desnecessários
+
+#### Ambientes Disponíveis
+
+**Desenvolvimento:**
+- Hot-reload habilitado
+- Volumes montados para sincronização de código
+- Node modules e .next em cache para performance
+- Porta 3000 exposta
+
+**Produção:**
+- Build multi-stage otimizado
+- Imagem mínima baseada em Alpine Linux
+- Usuário não-root para segurança
+- Telemetria Next.js desabilitada
+
+### Uso do Docker
+
+#### Ambiente de Desenvolvimento
+```bash
+# Inicia container de desenvolvimento com hot-reload
+npm run docker:dev
+
+# Ou usando Docker Compose diretamente
+docker-compose --profile dev up --build
+```
+
+#### Ambiente de Produção
+```bash
+# Inicia container de produção otimizado
+npm run docker:prod
+
+# Ou construir e executar manualmente
+npm run docker:build
+npm run docker:run
+```
+
+#### Gerenciamento de Containers
+```bash
+# Parar todos os containers
+npm run docker:stop
+
+# Limpar sistema Docker (containers, imagens e volumes não utilizados)
+npm run docker:clean
+```
+
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000) em ambos os ambientes.
 
 ## 🏗️ Stack de Tecnologias
 
